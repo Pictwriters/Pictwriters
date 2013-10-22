@@ -20,6 +20,7 @@ let main ()=
             print_string "transformation de l angle...";
             print_newline();
             (*la fonction*)
+            let angle_en_rad = Rotation.deg_to_rad 90. in
             print_string "OK";
             print_newline();
 
