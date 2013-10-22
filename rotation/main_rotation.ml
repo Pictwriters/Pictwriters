@@ -11,7 +11,7 @@ let main ()=
           print_string "chargement de l'image...";
           print_newline();
           (*la fonction*)
-          let surface1 = Rotation.charger_image "duke.bmp" in
+          let img_in = Rotation.charger_image "duke.bmp" in
 
             print_string "OK";
             print_newline();
@@ -21,24 +21,25 @@ let main ()=
             print_newline();
             (*la fonction*)
             let angle_en_rad = Rotation.deg_to_rad 90. in
-            print_string "OK";
-            print_newline();
+              print_string "OK";
+              print_newline();
 
-            (*on lance la rotation*)
-            print_string "rotation en cour...";
-            print_newline();
-            (*la fonction*)
-            print_string "OK";
-            print_newline();
+              (*on lance la rotation*)
+              print_string "rotation en cour...";
+              print_newline();
+              (*la fonction*)
+              let resultat = Rotation.rotation angle_en_rad img_in in
+                print_string "OK";
+                print_newline();
 
-            (*on enregistre le resultat*)
-            print_string "sauvegarde en cour...";
-            print_newline();
-            (*la fonction*)
-            Rotation.sauvegarde_image surface1;
+                (*on enregistre le resultat*)
+                print_string "sauvegarde en cour...";
+                print_newline();
+                (*la fonction*)
+                Rotation.sauvegarde_image resultat;
 
-            print_string "OK";
-            print_newline();
+                print_string "OK";
+                print_newline();
         end
   end
 

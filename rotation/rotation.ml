@@ -85,19 +85,35 @@ let rot_pixel i j angle img_in img_out =
     Sdlvideo.put_pixel img_out new_x new_y color_pixel
 
 
-(*rotation*)
-let rotation angle img_in img_out =
+(*rotation de toute l image*)
+let rotation_toute_image angle img_in img_out =
   let dim = get_dims img_in in
   let w =
-   match dim with
-     |(w,h) -> w
+    match dim with
+      |(w,h) -> w
   in
   let h =
     match dim with
       |(w,h) -> h
   in
-  for i = 0 to (w - 1) do
-    for j = 0 to (h - 1) do
-      rot_pixel i j angle img_in img_out
-    done
-  done
+    for i = 0 to (w - 1) do
+      for j = 0 to (h - 1) do
+        rot_pixel i j angle img_in img_out
+      done
+    done;
+    img_out
+
+
+(*rotation*)
+let rotation angle img_in =
+  let dim = get_dims img_in in
+  let w =
+    match dim with
+      |(w,h) -> w
+  in
+  let h =
+    match dim with
+      |(w,h) -> h
+  in
+  let img_out = Sdlvideo.create_RGB_surface_format img_in [] w h in
+    rotation_toute_image angle img_in img_out
