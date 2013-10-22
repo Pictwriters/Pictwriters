@@ -114,8 +114,8 @@ let rotation_toute_image angle img_in img_out =
     match dim with
       |(w,h) -> h
   in
-    for i = 0 to (w - 1) do
-      for j = 0 to (h - 1) do
+    for j = 0 to (h - 1) do
+      for i = 0 to (w - 1) do
         rot_pixel i j angle img_in img_out
       done
     done;
