@@ -11,7 +11,7 @@ let main ()=
           print_string "chargement de l'image...";
           print_newline();
           (*la fonction*)
-          let img_in = Rotation.charger_image "duke.bmp" in
+          let img_in = Rotation.charger_image "lenna.bmp" in (* "duke.bmp" *)
 
             print_string "OK";
             print_newline();
