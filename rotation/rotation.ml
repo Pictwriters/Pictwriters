@@ -68,6 +68,23 @@ let coordone_centre img =
     match dimention_de_image with
       | (w,h) -> (w/2,h/2)
 
+(*est ce que ce nouveau point est bien dans la photo *)
+let point_valide x y img_in =
+  let dim = get_dims img_in in
+  let w =
+    match dim with
+      |(w,h) -> w
+  in
+  let h =
+    match dim with
+      |(w,h) -> h
+  in
+    if(((0 <= x) && (x < w)) || ((0 <= y) && (y < h)))then
+      true
+    else
+      false
+
+
 (*rotation d un pixel *)
 let rot_pixel i j angle img_in img_out =
   let color_pixel = Sdlvideo.get_pixel img_in i j in
@@ -82,7 +99,8 @@ let rot_pixel i j angle img_in img_out =
   in
   let new_x = rotx i j cx cy angle in
   let new_y = roty i j cx cy angle in
-    Sdlvideo.put_pixel img_out new_x new_y color_pixel
+    if(point_valide new_x new_y img_in)then
+      Sdlvideo.put_pixel img_out new_x new_y color_pixel
 
 
 (*rotation de toute l image*)
