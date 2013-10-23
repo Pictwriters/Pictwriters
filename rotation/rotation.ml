@@ -43,13 +43,13 @@ let sauvegarde_image surface =
 (* donne x apres rotation avec le centre *)
 
 let rotx i j cx cy ang =
-  cx + truncate( float_of_int(i-cx)*.(cos ang)
+  cx + float_to_int_arrondie( float_of_int(i-cx)*.(cos ang)
                  -. float_of_int(j-cy)*.(sin ang))
 
 (* donne y apres rotation avec le centre *)
 
 let roty i j cx cy ang =
-  cy + truncate( float_of_int(i-cx)*.(sin ang)
+  cy + float_to_int_arrondie( float_of_int(i-cx)*.(sin ang)
                  +. float_of_int(j-cy)*.(cos ang))
 
 (* Converti les radians en degres *)
