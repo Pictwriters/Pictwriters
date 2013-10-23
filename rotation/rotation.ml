@@ -84,6 +84,24 @@ let point_valide x y img_in =
     else
       false
 
+(*renvoi une image blanche de la meme taille que l image en parametre*)
+let white_pict img_in =
+  let dim = get_dims img_in in
+  let w =
+    match dim with
+      |(w,h) -> w
+  in
+  let h =
+    match dim with
+      |(w,h) -> h
+  in
+  let img_out = Sdlvideo.create_RGB_surface_format img_in [] w h in
+	for j = 0 to (h-1) do
+	for i = 0 to (w-1)do
+	Sdlvideo.put_pixel_color img_out i j (255,255,255)
+	done
+	done;
+	img_out
 
 (*rotation d un pixel *)
 let rot_pixel i j angle img_in img_out =
@@ -124,14 +142,5 @@ let rotation_toute_image angle img_in img_out =
 
 (*rotation*)
 let rotation angle img_in =
-  let dim = get_dims img_in in
-  let w =
-    match dim with
-      |(w,h) -> w
-  in
-  let h =
-    match dim with
-      |(w,h) -> h
-  in
-  let img_out = Sdlvideo.create_RGB_surface_format img_in [] w h in
+  let img_out = white_pict img_in in
     rotation_toute_image angle img_in img_out
