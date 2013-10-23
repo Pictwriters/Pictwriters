@@ -79,7 +79,7 @@ let point_valide x y img_in =
     match dim with
       |(w,h) -> h
   in
-    if(((0 <= x) && (x < w)) || ((0 <= y) && (y < h)))then
+    if(((0 <= x) && (x < w)) && ((0 <= y) && (y < h)))then
       true
     else
       false
