@@ -11,7 +11,7 @@ let main ()=
           print_string "chargement de l'image...";
           print_newline();
           (*la fonction*)
-          let img_in = Rotation.charger_image "lenna.bmp" in (* "duke.bmp" *)
+          let img_in = Rotation.charger_image (Array.get Sys.argv 1) in (* "lenna.bmp" *) (* "duke.bmp" *)
 
             print_string "OK";
             print_newline();
@@ -20,7 +20,7 @@ let main ()=
             print_string "transformation de l angle...";
             print_newline();
             (*la fonction*)
-            let angle_en_rad = Rotation.deg_to_rad 90. in
+            let angle_en_rad = Rotation.deg_to_rad (float_of_string(Array.get Sys.argv 2)) in
               print_string "OK";
               print_newline();
 
