@@ -1,13 +1,6 @@
-let _ = GMain.init ()
+let main () =
+  let window = GWindow.window () in
+  window#show ();
+  GMain.Main.main ()
 
-let window =
-	GWindow.window
-		~height:50
-		~width:50
-		()
-
-let _ =
-	window#connect#destroy ~callback:GMain.quit;
-	window#show ();
-	GMain.main ()
-	
+let _ = main ()

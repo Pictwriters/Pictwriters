@@ -1,11 +1,9 @@
 
-OCAMLFLAGS= -I +sdl -I +site-lib/sdl bigarray.cmxa -I +lablgtk2 lablgtk.cmxa
+OCAMLFLAGS= -I +lablgtk2
+GTKFLAGS= lablgtk.cma gtkInit.cmo
 
-gui: gui.ml
-	ocamlopt ${OCAMLFLAGS} -c gui.ml
-
-build: gui.cmx gui.ml
-	ocamlopt ${OCAMLFLAGS} -o main gui.cmx
+build: gui.ml
+	ocamlc ${OCAMLFLAGS} -o interface ${GTKFLAGS} gui.ml
 
 clean::
 	rm -f *~ *.o *.cm?
