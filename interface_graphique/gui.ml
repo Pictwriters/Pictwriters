@@ -1,58 +1,45 @@
-(* This is a callback function. *)
-let hello () =
-  print_endline "Hello World";
+let clicked msg () =
+  print_endline msg;
   flush stdout
 
-(* Another callback function.
- * If you return [false] in the "delete_event" signal handler,
- * GTK will emit the "destroy" signal. Returning [true] means
- * you don't want the window to be destroyed.
- * This is useful for popping up 'are you sure you want to quit?'
- * type dialogs. *)
 let delete_event ev =
-  print_endline "Delete event occurred";
-  flush stdout;
-
-  (* Change [true] to [false] and the main window will be destroyed with
-   * a "delete event" *)
-  true
-
-let destroy () = GMain.Main.quit ()
+ GMain.Main.quit ();
+ false
 
 let main () =
-  (* Create a new window and sets the border width of the window. *)
-  let window = GWindow.window ~border_width:10 () in
+  (* Create a new window and sets the border width and title of the window. *)
+  let window = GWindow.window ~title:"Hello Buttons!" ~border_width:10 () in
 
-  (* When the window is given the "delete_event" signal (this is given
-   * by the window manager, usually by the "close" option, or on the
-   * titlebar), we ask it to call the delete_event () function
-   * as defined above. *)
+  (* Here we just set a handler for delete_event that immediately
+   * exits GTK. *)
   window#event#connect#delete ~callback:delete_event;
 
-  (* Here we connect the "destroy" event to a signal handler.
-   * This event occurs when we call window#destroy method
-   * or if we return [false] in the "delete_event" callback. *)
-  window#connect#destroy ~callback:destroy;
+  (* We create a box to pack widgets into.  This is described in detail
+   * in the "packing" section. The box is not really visible, it
+   * is just used as a tool to arrange widgets.
+   * And put the box into the main window. *)
+  let box1 = GPack.hbox ~packing:window#add () in
 
-  (* Creates a new button with the label "Hello World".
-   * and packs the button into the window (a gtk container). *)
-  let button = GButton.button ~label:"Hello World" ~packing:window#add () in
+  (* Creates a new button with the label "Button 1".
+   * Instead of box1#add, we pack this button into the invisible
+   * box, which has been packed into the window. *)
+  let button = GButton.button ~label:"Button 1" ~packing:box1#pack () in
 
-  (* When the button receives the "clicked" signal, it will call the
-   * function hello().  The hello() function is defined above. *)
-  button#connect#clicked ~callback:hello;
+  (* Now when the button is clicked, we call the "clicked" function
+   * with "button 1" as its argument *)
+  button#connect#clicked ~callback:(clicked "button 1");
 
-  (* This will cause the window to be destroyed by calling
-   * window#destroy () when "clicked".  Again, the destroy
-   * signal could come from here, or the window manager. *)
-  button#connect#clicked ~callback:window#destroy;
+  (* Do these same steps again to create a second button *)
+  let button = GButton.button ~label:"Button 2" ~packing:box1#pack () in
 
-  (* The final step is to display the window. *)
+  (* Call the same callback function with a different argument,
+   * passing "button 2" instead. *)
+  button#connect#clicked ~callback:(clicked "button 2");
+
+  (* Display the window. *)
   window#show ();
 
-  (* All GTK applications must have a GMain.Main.main (). Control ends here
-   * and waits for an event to occur (like a key press or
-   * mouse event). *)
+  (* Rest in GMain.Main.main and wait for the fun to begin! *)
   GMain.Main.main ()
 
 let _ = main ()
