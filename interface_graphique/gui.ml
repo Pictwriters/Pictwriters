@@ -48,9 +48,11 @@ let main () =
 
   let box_texte = GPack.hbox ~packing:main_box#add () in
 
-  let name_of_text = ref "le texte de l'image" in
+  let text_to_display = ref "le texte de l'image" in
 
-  let zone_texte = GEdit.entry ~text:!name_of_text (*~width:100 ~height:200*) ~packing:box_texte#add () in
+  let buffer_texte = GText.buffer ~text:(!text_to_display) () in
+
+  let box_view_texte = GText.view ~buffer:buffer_texte ~editable:true ~packing:box_texte#add () in
 
   let box_avancement = GPack.hbox ~packing:main_box#add () in
 
