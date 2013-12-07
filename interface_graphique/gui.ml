@@ -63,8 +63,10 @@ let main () =
 
   let button_quitter = GButton.button ~stock:`QUIT ~packing:box_bouton_quitter#add () in
 
-main_window#show ();
+  button_quitter#connect#clicked ~callback:(GMain.Main.quit);
 
-GMain.Main.main ()
+  main_window#show ();
+
+  GMain.Main.main ()
 
 let _ = main ()
