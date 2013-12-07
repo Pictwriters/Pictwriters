@@ -20,24 +20,18 @@ let main () =
 
   let item2 = GButton.tool_item ~packing:toolbar#insert () in
 
-  let button_item2 = GFile.chooser_button
-                 ~action:`OPEN
-                 ~packing:item2#add ()
+  let button_item2 = GButton.button
+               ~packing: item2#add()
+               ~stock: `EXECUTE
   in
 
   let item3 = GButton.tool_item ~packing:toolbar#insert () in
 
-  let button_item3 = GFile.chooser_button
-                 ~action:`OPEN
-                 ~packing:item3#add ()
-  in
+  let button_item3 = GButton.button ~stock:`HELP ~packing:item3#add () in
 
   let item4 = GButton.tool_item ~packing:toolbar#insert () in
 
-  let button_item4 = GFile.chooser_button
-                 ~action:`OPEN
-                 ~packing:item4#add ()
-  in
+  let button_item4 = GButton.button ~stock:`ABOUT ~packing:item4#add () in
 
   let box_image = GPack.hbox ~packing:main_box#add () in
 
