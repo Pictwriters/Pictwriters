@@ -37,7 +37,14 @@ let main () =
 
   let name_of_image = ref "duke.bmp" in
 
-  let button_image = GButton.button ~label:"image" ~packing:box_image#pack () in
+  let box_view_image = GBin.scrolled_window
+    ~packing:box_image#add ()
+  in
+
+  let view_image = GMisc.image
+    ~file:!name_of_image
+    ~packing:box_view_image#add_with_viewport ()
+  in
 
   let box_texte = GPack.hbox ~packing:main_box#add () in
 
@@ -51,7 +58,7 @@ let main () =
 
   let box_bouton_quitter = GPack.hbox ~packing:main_box#add () in
 
-  let button_quitter = GButton.button ~label:"quitter" ~packing:box_bouton_quitter#pack () in
+  let button_quitter = GButton.button ~stock:`QUIT ~packing:box_bouton_quitter#pack () in
 
 main_window#show ();
 
