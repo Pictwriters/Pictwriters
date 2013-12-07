@@ -1,45 +1,35 @@
-let clicked msg () =
-  print_endline msg;
-  flush stdout
-
-let delete_event ev =
- GMain.Main.quit ();
- false
 
 let main () =
-  (* Create a new window and sets the border width and title of the window. *)
-  let window = GWindow.window ~title:"Hello Buttons!" ~border_width:10 () in
+  let main_window = GWindow.window ~title:"Pictwriters" ~border_width:10 ~position:`CENTER () in
 
-  (* Here we just set a handler for delete_event that immediately
-   * exits GTK. *)
-  window#event#connect#delete ~callback:delete_event;
+  main_window#connect#destroy ~callback:GMain.Main.quit;
 
-  (* We create a box to pack widgets into.  This is described in detail
-   * in the "packing" section. The box is not really visible, it
-   * is just used as a tool to arrange widgets.
-   * And put the box into the main window. *)
-  let box1 = GPack.hbox ~packing:window#add () in
+  let main_box = GPack.hbox ~packing:main_window#add () in
 
-  (* Creates a new button with the label "Button 1".
-   * Instead of box1#add, we pack this button into the invisible
-   * box, which has been packed into the window. *)
-  let button = GButton.button ~label:"Button 1" ~packing:box1#pack () in
+  let box_boutons = GPack.hbox ~packing:main_box#add () in
 
-  (* Now when the button is clicked, we call the "clicked" function
-   * with "button 1" as its argument *)
-  button#connect#clicked ~callback:(clicked "button 1");
+  let button_ouvrir = GButton.button ~label:"open" ~packing:box_boutons#pack () in
 
-  (* Do these same steps again to create a second button *)
-  let button = GButton.button ~label:"Button 2" ~packing:box1#pack () in
+  let button_traitement = GButton.button ~label:"traitement" ~packing:box_boutons#pack () in
 
-  (* Call the same callback function with a different argument,
-   * passing "button 2" instead. *)
-  button#connect#clicked ~callback:(clicked "button 2");
+  let box_image = GPack.hbox ~packing:main_box#add () in
 
-  (* Display the window. *)
-  window#show ();
+  let button_image = GButton.button ~label:"image" ~packing:box_image#pack () in
 
-  (* Rest in GMain.Main.main and wait for the fun to begin! *)
-  GMain.Main.main ()
+  let box_texte = GPack.hbox ~packing:main_box#add () in
+
+  let zone_texte = GEdit.entry ~text:"le texte de l'image" ~packing:box_texte#add () in
+
+  let box_avancement = GPack.hbox ~packing:main_box#add () in
+
+  let button_avancement = GButton.button ~label:"0%" ~packing:box_avancement#pack () in
+
+  let box_bouton_quitter = GPack.hbox ~packing:main_box#add () in
+
+  let button_quitter = GButton.button ~label:"quitter" ~packing:box_bouton_quitter#pack () in
+
+main_window#show ();
+
+GMain.Main.main ()
 
 let _ = main ()
