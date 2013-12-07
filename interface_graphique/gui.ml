@@ -33,6 +33,26 @@ let main () =
 
   let button_item4 = GButton.button ~stock:`ABOUT ~packing:item4#add () in
 
+  let about_window = GWindow.about_dialog
+    ~name:"Pictwriters"
+       ~authors:["ARCHER Stéphane, Melanie Ey, Daniel Petrov, Ugo Lorenzini"]
+       ~copyright:"2013"
+       ~license:"Public License"
+       ~version:"1.0"
+       ~website:"http://pictwriters.wordpress.com/"
+       ~website_label:"pictwriters.com"
+       ~parent:main_window
+       ~destroy_with_parent:false
+       ~title:"Pictwriters"
+       ~deletable:true
+       ~position:`CENTER_ON_PARENT
+       ~resizable:true
+       ~border_width:2
+       ()
+  in
+
+  button_item4#connect#clicked ~callback:(fun () -> about_window#show ());
+
   let box_image = GPack.hbox ~packing:main_box#add () in
 
   let name_of_image = ref "duke.bmp" in
