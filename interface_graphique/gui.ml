@@ -56,11 +56,12 @@ let main () =
 
   let box_avancement = GPack.hbox ~packing:main_box#add () in
 
-  let button_avancement = GButton.button ~label:"0%" ~packing:box_avancement#pack () in
+  let bar_avancement = GRange.progress_bar ~orientation:`LEFT_TO_RIGHT ~pulse_step:0.5 ~packing:box_avancement#add () in
+  (*bar_avancement#pulse (); *)
 
   let box_bouton_quitter = GPack.hbox ~packing:main_box#add () in
 
-  let button_quitter = GButton.button ~stock:`QUIT ~packing:box_bouton_quitter#pack () in
+  let button_quitter = GButton.button ~stock:`QUIT ~packing:box_bouton_quitter#add () in
 
 main_window#show ();
 
