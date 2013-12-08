@@ -6,6 +6,35 @@ let main () =
 
   let main_box = GPack.vbox ~spacing:2 ~border_width:2 ~packing:main_window#add () in
 
+  let box_image = GPack.hbox ~packing:main_box#add () in
+
+  let name_of_image = ref "duke.bmp" in
+
+  let box_view_image = GBin.scrolled_window
+    ~packing:box_image#add ()
+  in
+
+(*
+  (*l image par defaut a l ouverture *)
+  let view_image = GMisc.image
+    ~file:!name_of_image
+    ~packing:box_view_image#add_with_viewport ()
+  in
+*)
+
+  let box_texte = GPack.hbox ~packing:main_box#add () in
+
+  let text_to_display = ref "le texte de l'image" in
+
+  let buffer_texte = GText.buffer ~text:(!text_to_display) () in
+
+  let box_view_texte = GText.view ~buffer:buffer_texte ~editable:true ~packing:box_texte#add () in
+
+  let box_avancement = GPack.hbox ~packing:main_box#add () in
+
+  let bar_avancement = GRange.progress_bar ~orientation:`LEFT_TO_RIGHT ~pulse_step:0.5 ~packing:box_avancement#add () in
+  (*bar_avancement#pulse (); *)
+
   let toolbar = GButton.toolbar
     ~orientation:`HORIZONTAL
     ~style:`ICONS
@@ -17,6 +46,20 @@ let main () =
     ~action:`OPEN
     ~packing:item1#add ()
   in
+
+  let changer_image boutton =
+    match boutton#filename with
+    | Some n ->
+      GMisc.image
+	~file:n
+	~packing:box_view_image#add_with_viewport ()
+    | None ->
+      GMisc.image
+	~file:(!name_of_image)
+	~packing:box_view_image#add_with_viewport ()
+  in
+
+  button_item1#connect#selection_changed (fun () -> changer_image (button_item1); () );
 
   let item2 = GButton.tool_item ~packing:toolbar#insert () in
 
@@ -90,32 +133,6 @@ Vous pouvez à présent fermer l'application à l'aide du bouton [Quitter]" in
   in
 
   button_item4#connect#clicked ~callback:(fun () -> about_window#run (); about_window#misc#hide () );
-
-  let box_image = GPack.hbox ~packing:main_box#add () in
-
-  let name_of_image = ref "duke.bmp" in
-
-  let box_view_image = GBin.scrolled_window
-    ~packing:box_image#add ()
-  in
-
-  let view_image = GMisc.image
-    ~file:!name_of_image
-    ~packing:box_view_image#add_with_viewport ()
-  in
-
-  let box_texte = GPack.hbox ~packing:main_box#add () in
-
-  let text_to_display = ref "le texte de l'image" in
-
-  let buffer_texte = GText.buffer ~text:(!text_to_display) () in
-
-  let box_view_texte = GText.view ~buffer:buffer_texte ~editable:true ~packing:box_texte#add () in
-
-  let box_avancement = GPack.hbox ~packing:main_box#add () in
-
-  let bar_avancement = GRange.progress_bar ~orientation:`LEFT_TO_RIGHT ~pulse_step:0.5 ~packing:box_avancement#add () in
-  (*bar_avancement#pulse (); *)
 
   let box_bouton_quitter = GPack.hbox ~packing:main_box#add () in
 
