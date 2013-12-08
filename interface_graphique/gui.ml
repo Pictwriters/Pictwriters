@@ -6,6 +6,8 @@ let main () =
 
   let main_box = GPack.vbox ~spacing:2 ~border_width:2 ~packing:main_window#add () in
 
+  let box_toolbar = GPack.vbox ~packing:main_box#add () in
+
   let box_image = GPack.hbox ~packing:main_box#add () in
 
   let name_of_image = ref "duke.bmp" in
@@ -38,7 +40,9 @@ let main () =
   let toolbar = GButton.toolbar
     ~orientation:`HORIZONTAL
     ~style:`ICONS
-    ~packing:(main_box#pack ~expand:false) () in
+    ~packing:box_toolbar#pack
+    ()
+  in
 
   let item1 = GButton.tool_item ~packing:toolbar#insert () in
 
