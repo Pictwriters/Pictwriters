@@ -34,7 +34,7 @@ let main () =
 
   let box_avancement = GPack.hbox ~packing:main_box#add () in
 
-  let bar_avancement = GRange.progress_bar ~orientation:`LEFT_TO_RIGHT ~pulse_step:0.5 ~packing:box_avancement#add () in
+  let bar_avancement = GRange.progress_bar ~orientation:`LEFT_TO_RIGHT ~pulse_step:0.25 ~packing:box_avancement#add () in
   (*bar_avancement#pulse (); *)
 
   let toolbar = GButton.toolbar
@@ -73,10 +73,40 @@ let main () =
   in
 
   let changer_le_texte str =
-    buffer_texte#set_text (str)
+    buffer_texte#set_text (str);
+    bar_avancement#pulse ();
   in
 
-  button_item2#connect#clicked ~callback:(fun () -> changer_le_texte "ponney"; () );
+  let new_text_to_display = ref "A la musique
+
+Place de la Gare, à Charleville.
+
+Sur la place taillée en mesquines pelouses,
+Square où tout est correct, les arbres et les fleurs,
+Tous les bourgeois poussifs qu'étranglent les chaleurs
+Portent, les jeudis soirs, leurs bêtises jalouses.
+
+- L'orchestre militaire, au milieu du jardin,
+Balance ses schakos dans la Valse des fifres :
+Autour, aux premiers rangs, parade le gandin ;
+Le notaire pend à ses breloques à chiffres.
+
+Des rentiers à lorgnons soulignent tous les couacs :
+Les gros bureaux bouffis traînant leurs grosses dames
+Auprès desquelles vont, officieux cornacs,
+Celles dont les volants ont des airs de réclames ;
+
+Sur les bancs verts, des clubs d'épiciers retraités
+Qui tisonnent le sable avec leur canne à pomme,
+Fort sérieusement discutent les traités,
+Puis prisent en argent, et reprennent : En somme !...
+
+Épatant sur son banc les rondeurs de ses reins,
+Un bourgeois à boutons clairs, bedaine flamande,
+Savoure son onnaing d'où le tabac par brins
+Déborde - vous savez, c'est de la contrebande ; -" in
+
+  button_item2#connect#clicked ~callback:(fun () -> changer_le_texte !new_text_to_display; () );
 
   let item3 = GButton.tool_item ~packing:toolbar#insert () in
 
