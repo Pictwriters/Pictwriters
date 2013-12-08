@@ -72,6 +72,12 @@ let main () =
     ~stock: `EXECUTE
   in
 
+  let changer_le_texte str =
+    buffer_texte#set_text (str)
+  in
+
+  button_item2#connect#clicked ~callback:(fun () -> changer_le_texte "ponney"; () );
+
   let item3 = GButton.tool_item ~packing:toolbar#insert () in
 
   let button_item3 = GButton.button ~stock:`HELP ~packing:item3#add () in
