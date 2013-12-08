@@ -7,22 +7,22 @@ let main () =
   let main_box = GPack.vbox ~spacing:2 ~border_width:2 ~packing:main_window#add () in
 
   let toolbar = GButton.toolbar
-                ~orientation:`HORIZONTAL
-                ~style:`ICONS
-                ~packing:(main_box#pack ~expand:false) () in
+    ~orientation:`HORIZONTAL
+    ~style:`ICONS
+    ~packing:(main_box#pack ~expand:false) () in
 
   let item1 = GButton.tool_item ~packing:toolbar#insert () in
 
   let button_item1 = GFile.chooser_button
-                 ~action:`OPEN
-                 ~packing:item1#add ()
+    ~action:`OPEN
+    ~packing:item1#add ()
   in
 
   let item2 = GButton.tool_item ~packing:toolbar#insert () in
 
   let button_item2 = GButton.button
-               ~packing: item2#add()
-               ~stock: `EXECUTE
+    ~packing: item2#add()
+    ~stock: `EXECUTE
   in
 
   let item3 = GButton.tool_item ~packing:toolbar#insert () in
@@ -35,20 +35,20 @@ let main () =
 
   let about_window = GWindow.about_dialog
     ~name:"Pictwriters"
-       ~authors:["ARCHER Stéphane, Melanie Ey, Daniel Petrov, Ugo Lorenzini"]
-       ~copyright:"2013"
-       ~license:"Public License"
-       ~version:"1.0"
-       ~website:"http://pictwriters.wordpress.com/"
-       ~website_label:"pictwriters.com"
-       ~parent:main_window
-       ~destroy_with_parent:false
-       ~title:"Pictwriters"
-       ~deletable:true
-       ~position:`CENTER_ON_PARENT
-       ~resizable:true
-       ~border_width:2
-       ()
+    ~authors:["ARCHER Stéphane, Melanie Ey, Daniel Petrov, Ugo Lorenzini"]
+    ~copyright:"2013"
+    ~license:"Public License"
+    ~version:"1.0"
+    ~website:"http://pictwriters.wordpress.com/"
+    ~website_label:"pictwriters.com"
+    ~parent:main_window
+    ~destroy_with_parent:false
+    ~title:"Pictwriters"
+    ~deletable:true
+    ~position:`CENTER_ON_PARENT
+    ~resizable:true
+    ~border_width:2
+    ()
   in
 
   button_item4#connect#clicked ~callback:(fun () -> about_window#show ());
