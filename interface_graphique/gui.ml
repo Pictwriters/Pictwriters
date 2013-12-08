@@ -51,7 +51,7 @@ let main () =
     ()
   in
 
-  button_item4#connect#clicked ~callback:(fun () -> about_window#show ());
+  button_item4#connect#clicked ~callback:(fun () -> about_window#run (); about_window#misc#hide () );
 
   let box_image = GPack.hbox ~packing:main_box#add () in
 
