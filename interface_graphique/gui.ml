@@ -29,6 +29,44 @@ let main () =
 
   let button_item3 = GButton.button ~stock:`HELP ~packing:item3#add () in
 
+  let message_help_window =ref "Manuel d'utilisation
+
+Introduction
+
+Pictwriters est un OCR (Optical Character Recognition) développé sous FreeBSD et a été codé intégralement en Ocaml. C'est le projet de quatre étudiants d'EPITA : une école d'ingénieurs en informatique. Vous pouvez trouver plus d'informations sur le site internet du projet : http://pictwriters.wordpress.com/
+
+Logiciels nécessaires :
+
+Afin que l'OCR fonctionne vous devez installer obligatoirement : - Ocaml - GTK pour utiliser l'interface graphique - Libsdl et Ocaml SDL
+
+Utilisation de Pictwriters avec l'interface graphique
+
+Sélection d'une image :
+
+Pour sélectionner une image cliquez sur l'icone [Exécuter].
+
+Récupération du texte:
+
+Pour récupérer le texte de l'image, sélectionner le texte dans le cadre s'affichant sous votre image puis faites un copier / coller (ctrl a / ctrl c) dans le document ou vous voulez insérer votre texte.
+
+Vous pouvez à présent fermer l'application à l'aide du bouton [Quitter]" in
+
+  let help_window = GWindow.message_dialog
+    ~message:(!message_help_window)
+    ~message_type:`INFO
+    ~buttons:(GWindow.Buttons.ok)
+    ~parent:main_window
+    ~destroy_with_parent:false
+    ~title:"help Pictwriters"
+    ~deletable:true
+    ~position:`CENTER_ON_PARENT
+    ~resizable:true
+    ~border_width:2
+    ()
+  in
+
+  button_item3#connect#clicked ~callback:(fun () -> help_window#run (); help_window#misc#hide () );
+
   let item4 = GButton.tool_item ~packing:toolbar#insert () in
 
   let button_item4 = GButton.button ~stock:`ABOUT ~packing:item4#add () in
