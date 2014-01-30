@@ -4,41 +4,27 @@ body
 {
 	background: url('img/fond2.jpg');
 	background-attachment: fixed;
-	color: #181818;
-}
-
-A:link
-{
-   color: black;
-}
-A:visited
-{
-   color: black;
 }
 
 #bloc_page
 {
-	width: auto;
+	color: #181818;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 	font-family: Arial, sans-serif;
-	margin: auto;
-}
-
-section h1, footer h1, nav a
-{
-	font-weight: serif;
-	text-transform: uppercase;
 }
 
 /*header*/
 
 header
 {
-	/*background: url('img/separateur.png') repeat-x bottom;*/
+
 }
 
 #titre_principal
 {
-    display: inline-block;
+
 }
 
 header h1
@@ -46,12 +32,7 @@ header h1
     font-family: 'Lobster Two', cursive, Arial, serif;
     font-size: 3em;
     font-weight: normal;
-	margin-left: 500px;
-}
-
-#logo, header h1
-{
-    display: inline-block;
+	text-align: center;
     margin-bottom: 0px;
 }
 
@@ -61,39 +42,26 @@ header h2
     font-size: 1.5em;
     margin-top: 0px;
     font-weight: normal;
-	margin-left: 360px;
-}
-
-section h3
-{
-	font-size: 1.4em;
-}
-
-section h4
-{
-	font-size: 1.2em;
-	text-decoration: underline;
+	text-align: center;
 }
 
 /* Navigation */
 
 nav
 {
-    display: inline-block;
-    width: 1100px;
-    text-align: right;
+
 }
 
 nav ul
 {
-    list-style-type: none;
+
 }
 
 nav li
 {
     display: inline-block;
     margin-right: 15px;
-	margin-left: 30px;
+	margin-left: 15px;
 }
 
 nav a
@@ -112,69 +80,49 @@ nav a:hover
 
 /* Corps */
 
-div
+section h3
 {
-    display: inline-block;
-    vertical-align: top;
-    text-align: justify;
+	font-size: 1.4em;
+}
+
+section h4
+{
+	font-size: 1.2em;
+	text-decoration: underline;
+}
+
+section a:link
+{
+   color: black;
+}
+section a:visited
+{
+   color: black;
 }
 
 div article
 {
-    display: block;
-    vertical-align: top;
     text-align: justify;
-}
-
-aside
-{
-    display: inline-block;
-    vertical-align: top;
-    text-align: justify;
-}
-
-article
-{
-    width: 1524px;
-    margin-right: 25px;
+    margin-right: 20px;
 	margin-left: 20px;
 }
 
-article p
+div article p
 {
     font-size: 20px;
 }
 
 aside
 {
-    position: relative;
-    width: 235px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: justify;
     background-color: #706b64;
     box-shadow: 0px 2px 5px #1c1a19;
     border-radius: 5px;
     padding: 10px;
     color: white;
     font-size: 0.9em;
-}
-
-#epita
-{
-    text-align: center;
-}
-
-#epita img
-{
-    border: 1px solid #181818;
-}
-
-aside img
-{
-    margin-right: 5px;
-}
-
-aside h3
-{
-	text-align: center;
 }
 
 
